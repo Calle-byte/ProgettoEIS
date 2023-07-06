@@ -1,31 +1,34 @@
 import edu.stanford.nlp.simple.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
 public class Analyse {
+    
+    //Passa come variabile un numero, che sarà =0 se vogliamo guardare la cartella del Guardian, =1 per il CSV
+    public void Search(int i) throws IOException {      
+        Set<String> EXCLUDED_WORDS = new HashSet<>();
+        try {
+            FileReader fl = new FileReader("C:\\Users\\marco\\IdeaProjects\\TheGuardian\\BanList.txt"); //Directory della black list di parole
 
-    private static final Set<String> EXCLUDED_WORDS = new HashSet<>(Arrays.asList(
-            ",", ".", ":", ";", "!", "?", "(", ")", "[", "]", "{", "}",
-            "and", "or", "but", "if", "then", "else", "while", "do", "for", "to",
-            "a", "an", "the", "in", "on", "at", "by", "about", "with", "without",
-            "of", "off", "from", "into", "onto", "through", "over", "under", "above", "below",
-            "that", "’s", "is", "it", "as", "\"", "“", "”", "-", "have", "this", "was", "has",
-            "be", "are", "not", "been", "which", "had", "more", "said", "their", "who", "they", "up",
-            "out", "after", "he", "–"
-    ));
+            BufferedReader br = new BufferedReader(fl);
+            String line;
+            while ((line = br.readLine()) != null) {
+                EXCLUDED_WORDS.add(line);
+            }
+        }catch(Exception e){}
 
-    public static void main(String[] args) throws IOException {
-        String folderPath = "C:\\Users\\marco\\IdeaProjects\\TheGuardian\\Articoli"; // Imposta il percorso della cartella contenente i file TXT
+        // Imposta il percorso della cartella contenente i file TXT
+        String folderPath="";
+        if(i==0) folderPath = "C:\\Users\\marco\\IdeaProjects\\TheGuardian\\ArticoliGuardian";  //Directory della cartella contenente gli articoli scaricati dal Guardian
+        if(i==1) folderPath = "C:\\Users\\marco\\IdeaProjects\\TheGuardian\\ArticoliCSV";       //Directory della cartella contenente gli articoli scaricati dal CSV
+
         List<Path> filePaths = getTxtFilePaths(folderPath);
-
         Map<String, Integer> wordCounts = new HashMap<>();
         Set<String> countedWords = new HashSet<>();
-
         for (Path filePath : filePaths) {
             Set<String> uniqueWords = new HashSet<>();
             List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
@@ -33,12 +36,11 @@ public class Analyse {
                 List<String> words = getWords(line);
                 for (String word : words) {
                     String cleanWord = word.toLowerCase();
-                    if (!isExcludedWord(cleanWord)) {
+                    if (!isExcludedWord(cleanWord, EXCLUDED_WORDS)) {
                         uniqueWords.add(cleanWord);
                     }
                 }
             }
-
             for (String word : uniqueWords) {
                 if (countedWords.contains(word)) {
                     Integer count = wordCounts.get(word);
@@ -51,7 +53,6 @@ public class Analyse {
                 }
             }
         }
-
         List<Map.Entry<String, Integer>> sortedEntries = sortByValue(wordCounts);
         System.out.println("Le parole più frequenti sono:");
         int count = 0;
@@ -59,7 +60,6 @@ public class Analyse {
             if (count >= 10) {
                 break;
             }
-
             System.out.println(entry.getKey() + " - " + entry.getValue());
             count++;
         }
@@ -84,7 +84,7 @@ public class Analyse {
         return sentence.words();
     }
 
-    private static boolean isExcludedWord(String word) {
+    private static boolean isExcludedWord(String word, Set<String> EXCLUDED_WORDS) {
         return EXCLUDED_WORDS.contains(word);
     }
 
