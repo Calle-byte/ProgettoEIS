@@ -12,9 +12,9 @@ public class Analyse {
     public void Search(int i) throws IOException {      
         Set<String> EXCLUDED_WORDS = new HashSet<>();
         try {
-            FileReader fl = new FileReader("C:\\Users\\marco\\IdeaProjects\\TheGuardian\\BanList.txt"); //Directory della black list di parole
+            FileReader fr = new FileReader("C:\\Users\\marco\\IdeaProjects\\TheGuardian\\BanList.txt"); //Directory della black list di parole
 
-            BufferedReader br = new BufferedReader(fl);
+            BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
                 EXCLUDED_WORDS.add(line);
