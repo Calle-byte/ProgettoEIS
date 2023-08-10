@@ -1,5 +1,10 @@
 import java.util.Scanner;
 import java.io.IOException;
+
+/**
+ * Classe principale del progetto.
+ * In base alla richiesta dell'utente, esegue programmi e funzioni diverse.
+*/
 public class AppTest{
     public static void main(String[] args) {
 
