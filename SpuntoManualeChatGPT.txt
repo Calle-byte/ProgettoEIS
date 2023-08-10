@@ -1,0 +1,138 @@
+                                                𝗣𝗮𝗻𝗼𝗿𝗮𝗺𝗶𝗰𝗮 𝗱𝗲𝗹 𝗣𝗿𝗼𝗴𝗲𝘁𝘁𝗼
+
+Il progetto è un'applicazione Java sviluppata per scaricare, analizzare e contare le parole più frequenti dagli articoli
+ottenuti da The Guardian e da un file CSV. L'applicazione è suddivisa in tre classi principali: Analyse, Download, e App.
+
+-Classe "Analyse"
+
+Questa classe si occupa dell'analisi dei testi degli articoli per contare le parole più frequenti. Ecco come funziona:
+
+1. Legge una lista di parole vietate (blacklist) da un file BanList.txt e le conserva in un insieme.
+2. Ottiene i percorsi dei file di testo contenenti gli articoli da analizzare.
+3. Processa ogni articolo per estrarre le singole parole.
+4. Ignora le parole vietate e conta le parole rimanenti usando una mappa di conteggio.
+5.Ordina le parole in base al loro conteggio e restituisce le prime 10 parole più frequenti.
+
+-Classe "Download"
+
+Questa classe è responsabile per il download degli articoli da The Guardian e dal file CSV:
+
+1. Utilizza un'API key per fare richieste all'API del Guardian e scaricare articoli in base a una query specificata.
+2. Esegue più pagine di download, ciascuna con 200 articoli, e li salva come file di testo separati nella cartella ArticoliGuardian.
+3. In caso di errore o se gli articoli sono esauriti, termina l'operazione di download.
+
+-Classe App
+
+Questa classe funge da interfaccia utente per guidare l'utente attraverso le varie funzionalità dell'applicazione:
+
+1. L'utente può scegliere di scaricare articoli da The Guardian tramite una query, leggere articoli da The Guardian o da un file CSV,
+   o eseguire entrambe le operazioni.
+2. L'utente può inserire le proprie scelte attraverso la console.
+3. Il ciclo dell'interfaccia utente continua fino a quando l'utente sceglie di uscire.
+
+-Panoramica del Funzionamento
+
+L'utente avvia il programma e interagisce con l'interfaccia utente. A seconda delle scelte effettuate,
+l'applicazione scarica articoli da The Guardian o da un file CSV, li analizza per trovare le parole più frequenti, e mostra i risultati all'utente.
+
+Questo progetto rappresenta un'applicazione completa per il download, l'analisi e la visualizzazione dei dati da diverse fonti.
+La separazione delle funzionalità in classi distinte consente una migliore gestione e manutenzione del codice.
+
+
+                      𝗠𝗮𝗻𝘂𝗮𝗹𝗲 𝗱𝗶 𝗜𝘀𝘁𝗿𝘂𝘇𝗶𝗼𝗻𝗶 𝗽𝗲𝗿 𝗹'𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗮𝘇𝗶𝗼𝗻𝗲 𝗲𝗱 𝗘𝘀𝗲𝗰𝘂𝘇𝗶𝗼𝗻𝗲 𝗱𝗲𝗹 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝗱𝗶 𝗔𝗻𝗮𝗹𝗶𝘀𝗶 𝗱𝗶 𝗔𝗿𝘁𝗶𝗰𝗼𝗹𝗶 𝗚𝘂𝗮𝗿𝗱𝗶𝗮𝗻 𝗲 𝗖𝗦𝗩
+
+1. Requisiti di Sistema
+
+Assicurati che il tuo sistema soddisfi i seguenti requisiti:
+-Java Development Kit (JDK) versione 8 o superiore.
+-Apache Maven installato e configurato.
+-Connessione Internet attiva.
+-Spazio su disco sufficiente per i file scaricati.
+
+2. Installazione
+
+-Scarica il repository del software dal tuo repository Git o dalla fonte fornita.
+-Estrai il contenuto del repository in una directory locale sul tuo sistema.
+
+3. Configurazione
+
+-Apri il file di configurazione config.properties nella directory del progetto.
+-Inserisci la tua chiave API del Guardian nel campo api.key. Se non hai una chiave API, ottienila registrandoti sul Guardian API.
+-Configura altri parametri come la cartella di destinazione per i file scaricati, il numero massimo di articoli da scaricare, ecc. secondo le tue esigenze.
+
+4. Esecuzione
+
+-Apri il terminale o il prompt dei comandi.
+-Naviga nella directory del progetto utilizzando il comando cd percorso/della/directory.
+-Esegui il comando mvn clean compile per compilare il progetto.
+-Esegui il comando mvn exec:java per avviare l'applicazione.
+
+5. Analisi dei Risultati
+
+-Una volta completata l'esecuzione, troverai i file scaricati nella directory di destinazione specificata nella configurazione.
+-Apri il terminale e naviga nella directory dei file scaricati.
+-Esegui il comando java -jar NomeDelJar.jar (sostituisci NomeDelJar con il nome effettivo del tuo file JAR) per avviare l'analisi dei file.
+-L'output mostrerà le parole più comuni nei testi degli articoli scaricati.
+
+6. Risoluzione dei Problemi Comuni
+
+-Errore nell'avvio dell'applicazione: Verifica che tutti i requisiti di sistema siano soddisfatti e che hai seguito correttamente i passaggi di installazione ed esecuzione.
+-Errore nella configurazione: Controlla di aver inserito correttamente la chiave API e i parametri di configurazione nel file config.properties.
+-Problemi di connessione: Assicurati che la tua connessione Internet sia attiva e funzionante.
+
+
+                                         𝗙𝘂𝗻𝘇𝗶𝗼𝗻𝗶 𝘀𝗼𝗻𝗼 𝘀𝘁𝗮𝘁𝗲 𝗿𝗶𝘂𝘁𝗶𝗹𝗶𝘇𝘇𝗮𝘁𝗲 𝗱𝗮 𝗹𝗶𝗯𝗿𝗲𝗿𝗶𝗲 𝗲𝘀𝗶𝘀𝘁𝗲𝗻𝘁𝗶
+
+1. Gestione delle Richieste API e Download dei File:
+
+-Libreria: Apache HttpClient
+-Versione: 4.5.13
+-Funzione: Utilizzata per effettuare richieste HTTP alle API del Guardian e scaricare i file JSON degli articoli.
+
+2. Elaborazione dei File JSON:
+
+-Libreria: Jackson JSON
+-Versione: 2.13.0
+-Funzione: Utilizzata per analizzare e gestire i file JSON restituiti dall'API del Guardian, estrarre le informazioni necessarie e trasformarle in oggetti Java.
+
+3. Analisi del Testo e Tokenizzazione:
+
+-Libreria: Stanford CoreNLP
+-Versione: 4.2.2
+-Funzione: Utilizzata per l'analisi del testo degli articoli scaricati, inclusa la tokenizzazione, l'identificazione delle parole chiave e la rimozione delle stop words.
+
+4. Lettura e Scrittura su File:
+
+-Libreria: Java NIO (Native I/O)
+-Versione: Java 8 (fornita dal JDK)
+-Funzione: Utilizzata per la lettura dei file JSON scaricati e la scrittura dei risultati dell'analisi delle parole più comuni su file di testo.
+
+5. Conteggio delle Parole:
+
+-Libreria: Libreria Standard Java
+-Versione: Fornita dal JDK
+-Funzione: Utilizzata per contare le occorrenze delle diverse parole nei testi degli articoli.
+
+6. Gestione delle Proprietà di Configurazione:
+
+-Libreria: Libreria Standard Java (java.util.Properties)
+-Versione: Fornita dal JDK
+-Funzione: Utilizzata per leggere e gestire le proprietà di configurazione dal file config.properties.
+
+7. Gestione dei Log:
+
+-Libreria: Apache Log4j
+-Versione: 2.14.1
+-Funzione: Utilizzata per registrare eventi e messaggi durante l'esecuzione del programma, facilitando il debug e il monitoraggio.
+
+8. Gestione dei Parametri da Linea di Comando:
+
+-Libreria: Apache Commons CLI
+-Versione: 1.4
+-Funzione: Utilizzata per analizzare e gestire i parametri forniti dalla linea di comando durante l'esecuzione del programma.
+
+9. Interazione con l'Utente da Linea di Comando:
+
+-Libreria: Libreria Standard Java (java.util.Scanner)
+-Versione: Fornita dal JDK
+-Funzione: Utilizzata per interagire con l'utente da linea di comando, ad esempio per richiedere input o conferme.
