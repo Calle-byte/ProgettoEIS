@@ -9,7 +9,18 @@ import org.apache.commons.csv.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+    *Classe di download degli articoli, che siano attraverso una query utilizzando il The Guardian, o con un file CSV.
+*/
 public class Download {
+
+    /**
+    * Esegue una ricerca all'interno dei file TXT nella directory specificata e conteggia le parole più frequenti,
+    * escludendo le parole presenti nella blacklist.
+    *
+    * @param i Indicatore per selezionare la directory dei file (0 per gli articoli dal Guardian, 1 per gli articoli CSV).
+    * @throws IOException Se si verifica un errore durante la lettura dei file o della blacklist.
+    */
     public void Guardian(String query) {
         String apiKey = "5d63d9e8-4ca4-49e4-9d00-0fba1a197317"; // Inserisci qui la tua chiave API del Guardian
         int numberOfArticles = 200; // Numero di articoli da scaricare per pagine (200=max)
@@ -76,7 +87,14 @@ public class Download {
         }
     }
 
+    /**
+    * Scarica articoli da un file CSV e salva il corpo di ogni articolo in file di testo separati.
+    *
+    * @throws IOException Se si verificano errori durante la lettura del file CSV o la scrittura dei file di testo.
+    */
     public void DownloadFromCSV() throws IOException {
+    // Questo metodo scarica gli articoli da un file CSV e salva il corpo di ciascun articolo in file di testo separati.
+        
         String csvFile = "C:\\Users\\marco\\eclipse\\Downloads\\nytimes_articles_v2.csv"; //cartella del csv
         String line;
         String txtFile = "ArticoliCSV"; //cartella dove salvare i file
